@@ -23,4 +23,19 @@
 
 Array.prototype.isSubsetOf = function (arr) {
   // your code here
+  let uniq = Array.from(new Set(this));
+  let r = uniq.reduce((ac,x)=> {
+    if(arr.indexOf(x) >=0) ac.push(x);
+    return ac;
+  },[]).length
+  return (r === uniq.length) ? true : false;
 };
+
+
+
+ let a = ['commit','push']
+ console.log(a.isSubsetOf(['commit','rebase','push','blame'])); // true
+
+ let b = ['merge','reset','reset']
+ console.log(b.isSubsetOf(['reset','merge','add','commit'])) // true 
+
