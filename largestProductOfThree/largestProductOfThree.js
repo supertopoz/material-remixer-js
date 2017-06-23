@@ -8,6 +8,9 @@
  */
 
 
-var largestProductOfThree = function(array) {
-  // TODO: everything
-};
+var largestProductOfThree = (array) => array.sort().slice(-3).reduce((a,b)=>a*b);
+
+console.log(largestProductOfThree([2,1,3,7]));
+console.log(largestProductOfThree([-2,-1,-3,-7]));
+
+

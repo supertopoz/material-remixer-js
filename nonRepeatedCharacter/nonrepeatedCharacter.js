@@ -13,8 +13,10 @@ var firstNonRepeatedCharacter = function(string) {
     	if(obj[i] === undefined) obj[i] = 1;
     	else obj[i] += 1;
     }
-    for(var key in obj){ if(obj[key] === 1) return key; };
+    for (var key in obj) { if(obj[key] === 1) return key; };
     return null;
 };
 
 console.log(firstNonRepeatedCharacter('AACBDB'))
+console.log(firstNonRepeatedCharacter('ABC'))
+
