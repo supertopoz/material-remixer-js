@@ -9,7 +9,7 @@ $(function() {
 
   $('p').each(function(){
     var text = $(this).text().split(' ').join(' </span><span>');
-    $(this).empty().html(text);
+    $(this).empty().html("<span>"+text+"</span>");
   });
   // --------------STEP 2--------------
   // Next, change spans to random colors, once per second
@@ -24,7 +24,7 @@ $(function() {
     return color;
   } 
 
-  $("span").each(function(index) {        
+  $("span").each(function() {        
   	this.flash = function(){
   	  setTimeout(function(){
         $(this).css("color",randomColor())
