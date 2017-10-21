@@ -17,7 +17,34 @@
 *
 */
 
-var rockPaperScissors = function (
-) {
-  // TODO: your solution here
+
+let convertor = (arr,size) => {
+  let obj = {"1":"rock","2":"paper","3":"scissors"};
+  let result = arr.reduce((arr,x)=>{
+    if(obj[x]) arr.push(obj[x]); 
+    return arr;
+  },[]);
+  if (result.length === size) return result;
+}
+
+let roundBuilder = max => {
+	let l = '1', r = '3';
+	for(let i = 1; i < max; i++){
+        l += '1'
+        r += '3';
+	}
+	return [Number(l),Number(r)]
+}
+
+var rockPaperScissors = size => {
+
+  let bigResult = [];
+  let limits = roundBuilder(size)
+  for (let i = limits[0]; i< limits[1]; i++){
+  	let arr = convertor(i.toString().split(""),size);
+  	if (arr) bigResult.push(arr)
+  }
+  return bigResult;
 };
+
+console.log(rockPaperScissors(8));

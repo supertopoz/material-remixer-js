@@ -17,5 +17,35 @@
  * -> ["", "j", "ju", "jm", "jp", "jmu", "jmp", "jpu", "jmpu", "u", "m", "p", "mu", "mp", "pu", "mpu"]
  */
 
+
 var powerSet = function(str) {
 };
+
+// Get all possible combinations of a word. 
+
+let mySet = new Set();
+let temp = []
+
+let builder = function(str){
+  	
+  for (var i = str.length; i > 0; i --){
+  	let result = str.substr(0, i-1)+str.substring(i).split('').sort().join('')
+  	mySet.add(result);
+  	temp.push(result);
+  }
+  return temp
+}
+
+let powerSet = function(str) {
+
+  builder(str)
+    .forEach(x => builder(x)
+      .forEach( y => builder(y)))
+  mySet.add(str)
+  return [...mySet].sort();
+};
+
+
+
+console.log(powerSet('jump'));
+

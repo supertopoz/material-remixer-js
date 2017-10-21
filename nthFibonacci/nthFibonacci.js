@@ -20,9 +20,22 @@
  *
  */
 
-var nthFibonacci = function (n) {
-  // TODO: implement me!
-};
+// ----------------- Recursive -----------------------------------------------
+var nthFibonacci = (n) => (n <= 1 )? n : nthFibonacci(n-1) + nthFibonacci(n-2);
+console.log(nthFibonacci(4))
+
+
+// ----------------- Iterative 1 -----------------------------------------------
+var nums = [0,1];
+
+var nthFib = (n) =>{  
+  for (var i = 1; i<n; i++){
+  nums.push(nums[i-1] + nums[i]);
+}
+  return nums[n]
+}
+
+console.log(nthFib(4))
 
 
 
