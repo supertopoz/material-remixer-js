@@ -44,15 +44,58 @@ var numbersToWords = {
 };
 var numbersToPlace = {
   10: 'ten',
-  100: 'hundred',
-  1000: 'thousand',
-  1000000: 'million',
-  1000000000: 'billion',
-  1000000000000: 'trillion',
+  100: 'one-hundred',
+  1000: 'one-thousand',
+  1000000: 'one-million',
+  1000000000: 'one-billion',
+  1000000000000: 'one-trillion',
   1000000000000000: 'quadrillion',
   1000000000000000000: 'quintillion',
 };
 
-Number.prototype.toEnglish = function () {
+Number.prototype.toEnglish = function (num) {
+  
   // return my value as english words
+  let arr = num.toString().split('');
+  // get 1s
+  let handleZeros = numbersToPlace[num]
+  if(handleZeros !== undefined){
+    return handleZeros;
+  }
+  result = {}
+/*  result.d = numbersToWords[arr[arr.length -5]] + " thousand" // ten thousands
+  console.log(result.d)*/
+  result.a = numbersToWords[arr[arr.length -4]] + " thousand"
+  result.b = numbersToWords[arr[arr.length -3]] + " hundred"
+  result.c = numbersToWords[arr[arr.length -2] + arr[arr.length-1]] // pure tens
+ 
+  if(result.c === undefined){
+    result.c = numbersToWords[arr[arr.length -2]+0] +"-" +numbersToWords[arr[arr.length-1]] // mid tens
+  }
+
+  if(arr.length === 1){
+    result.d = numbersToWords[arr[arr.length -1]] //ones
+  }
+  
+  let sentence = "";
+  for(var i in result){
+    if(result[i] !== undefined){
+      if(result[i].indexOf('undefined') === -1){
+        if(result[i].indexOf('zero-') === -1){
+          if(result[i].indexOf('-hundred') >=0){
+            sentence += result[i]+ " and ";
+          } else {
+            sentence += result[i]+ " ";
+          }
+          
+        }
+      
+    }
+    }
+  }
+  return sentence;
 };
+
+console.log(Number.prototype.toEnglish(10200))
+
+
